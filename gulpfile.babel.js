@@ -79,10 +79,10 @@ gulp.task('imgMin', () => {
     .pipe(gulp.dest(buildBasePath + '/imgs'))
 });
 
-gulp.task('rev', function() {
+gulp.task('rev', ['createCss'], function () {
   gulp.src(['./rev/*.json', './src/html/*.html'])   //- 读取 rev-manifest.json 文件以及需要进行css名替换的文件
     .pipe(revCollector())                                   //- 执行文件内css名的替换
     .pipe(gulp.dest('./application/'));                     //- 替换后的文件输出的目录
 });
 
-gulp.task('default', ['createCss', 'imgMin'])
+gulp.task('default', ['rev', 'imgMin'])
