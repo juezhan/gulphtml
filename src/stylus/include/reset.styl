@@ -1,3 +1,4 @@
+@import "./variable/color.styl"
 /* css reset */
 
 /* 清除内外边距 */
@@ -5,35 +6,63 @@ body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构�
 dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
 pre, /* text formatting elements 文本格式元素 */
 fieldset, legend, button, input, textarea, /* form elements 表单元素 */
-th, td { /* table elements 表格元素 */
-    margin: 0;
-    padding: 0;
-border: 0px;
-}
+th, td /* table elements 表格元素 */
+  margin 0
+  padding 0
+  border 0px
 
 /* 设置默认字体 */
 body,
-button, input, select, textarea {
-font-family: 'Microsoft Yahei',"Lucida Grande", "Tahoma","Arial", "Helvetica", "sans-serif";
-font-size: 14px;
-color:#333;
-/* [disabled]outline:none; */
-}
-button, input, select, textarea{ outline:none;}
-html {line-height: 1; }
-address, cite, em, var,i { font-style: normal; } /* 将斜体扶正 */
+button, input, select, textarea
+  font-family 'Microsoft Yahei', "Lucida Grande", "Tahoma", "Arial", "Helvetica", "sans-serif"
+  font-size 14px
+  color #333
 
-h1 { font-size: 18px; /* 18px / 12px = 1.5 */ }
-h2 { font-size: 16px; }
-h3 { font-size: 14px; }
-h4, h5, h6 { font-size: 100%; }
+button, input, select, textarea
+  outline none
+
+html
+  line-height 1
+
+address, cite, em, var, i
+  font-style normal
+
+/* 将斜体扶正 */
+h1
+  font-size 18px
+
+/* 18px / 12px = 1.5 */
+
+h2
+  font-size 16px
+
+h3
+  font-size 14px
+
+h4, h5, h6
+  font-size 100%
 
 /* 重置列表元素 */
-ul, ol, li { list-style: none; }
+ul, ol, li
+  list-style none
 
 /* 重置文本格式元素 */
-a { text-decoration: none;color:#333; cursor:pointer;}
-a:hover { text-decoration:none; color:#ef3838; transition-duration:400ms; -moz-transition-duration:400ms; -webkit-transition-duration:400ms; -o-transition-duration:400ms;}
+a
+  text-decoration none
+  color #333
+  cursor pointer
 
-/* 重置图片元素 */	
-img {border: 0px;vertical-align:middle;-ms-interpolation-mode: bicubic;}
+ahover
+  text-decoration none
+  color #ef3838
+  transition-duration 400ms
+
+/* 重置图片元素 */
+img
+  border 0px
+  vertical-align middle
+  -ms-interpolation-mode bicubic
+
+.main-container
+  width 1200px
+  margin 0 auto

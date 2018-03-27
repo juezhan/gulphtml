@@ -6,9 +6,11 @@ import spritesmith from 'gulp.spritesmith'
 import imagemin from 'gulp-imagemin'
 import buffer from 'vinyl-buffer'
 import merge from 'merge-stream'
+import rev from 'gulp-rev'
+import revCollector from 'gulp-rev-collector'
 
 let buildBasePath = 'build/'    //构建输出的目录
-let distBasePath = 'dist/'      //构建输出的目录
+let cssPath = './src/css'      //构建输出的目录
 
 gulp.task('sprite', function () {
   // Generate our spritesheet
@@ -64,7 +66,10 @@ gulp.task('createCss', () => {
         }
       }
     }))   // 格式化 CSS
-    .pipe(gulp.dest(buildBasePath + '/css'));//输出到css目录
+    .pipe(rev())
+    .pipe(gulp.dest(cssPath))//输出到css目录
+    .pipe(rev.manifest('rev-css-manifest.json'))
+    .pipe(gulp.dest('rev'));
 });
 
 // 压缩图片
@@ -72,6 +77,12 @@ gulp.task('imgMin', () => {
   return gulp.src('./src/imgs/*.*')
     .pipe(imagemin())
     .pipe(gulp.dest(buildBasePath + '/imgs'))
+});
+
+gulp.task('rev', function() {
+  gulp.src(['./rev/*.json', './src/html/*.html'])   //- 读取 rev-manifest.json 文件以及需要进行css名替换的文件
+    .pipe(revCollector())                                   //- 执行文件内css名的替换
+    .pipe(gulp.dest('./application/'));                     //- 替换后的文件输出的目录
 });
 
 gulp.task('default', ['createCss', 'imgMin'])
