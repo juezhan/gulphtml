@@ -1,0 +1,27 @@
+{
+  "name": "demo_2",
+  "version": "1.0.0",
+  "description": "jeecms templat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juezhan",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^3.9.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^3.0.1",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-make-css-url-version": "^0.0.13",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-stylus": "^2.7.0",
+    "gulp.spritesmith": "^6.9.0",
+    "merge-stream": "^1.0.1",
+    "vinyl-buffer": "^1.0.1"
+  }
+}
