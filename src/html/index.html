@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-    <link href="../css/2.css" rel="stylesheet"/>
+    @@include('include/head.html', {"title": "小正太"})
     <link href="../css/index.css" rel="stylesheet"/>
 </head>
 <body class="index">
 <div class="top">
     <div class="main-container"></div>
 </div>
-<div class="header">
-    <div class="main-container">header</div>
-</div>
+@@include('include/header.html', {"title": "我的 Header~~~~."})
+@@include('include/navigat.html')
 <div class="main">
     <div class="main-container">
         <h1>Hello word</h1>
@@ -21,6 +18,5 @@
 <div class="footer">
     <div class="main-container">footer</div>
 </div>
-<script src="../../lib/js/jquery-3.3.1.min.js"></script>
 </body>
 </html>

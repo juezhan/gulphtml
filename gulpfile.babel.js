@@ -8,9 +8,13 @@ import buffer from 'vinyl-buffer'
 import merge from 'merge-stream'
 import rev from 'gulp-rev'
 import revCollector from 'gulp-rev-collector'
+import fileInclude from 'gulp-file-include'
 
 let buildBasePath = 'build/'    //构建输出的目录
-let cssPath = './src/css'      //构建输出的目录
+let distPath = './application'
+let cssPath = distPath + '/css'      //构建输出的目录
+let htmlPath = distPath + '/html'      //构建输出的目录
+let jsPath = distPath + '/js'      //构建输出的目录
 
 gulp.task('sprite', function () {
   // Generate our spritesheet
@@ -81,8 +85,27 @@ gulp.task('imgMin', () => {
 
 gulp.task('rev', ['createCss'], function () {
   gulp.src(['./rev/*.json', './src/html/*.html'])   //- 读取 rev-manifest.json 文件以及需要进行css名替换的文件
-    .pipe(revCollector())                                   //- 执行文件内css名的替换
-    .pipe(gulp.dest('./application/'));                     //- 替换后的文件输出的目录
+    .pipe(fileInclude({
+      prefix: '@@',
+      basepath: '@file'
+    }))           //- 引入包含文件
+    .pipe(revCollector())                           //- 执行文件内css名的替换
+    .pipe(gulp.dest(htmlPath));                     //- 替换后的文件输出的目录
 });
 
-gulp.task('default', ['rev', 'imgMin'])
+// Include HTML
+gulp.task('fileinclude', function () {
+  gulp.src(['./src/html/*.html'])
+    .pipe(fileInclude({
+      prefix: '@@',
+      basepath: '@file'
+    }))
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('copylib', function () {
+  return gulp.src('lib/**/*')
+    .pipe(gulp.dest(distPath))
+});
+
+gulp.task('default', ['copylib', 'rev', 'imgMin']);
