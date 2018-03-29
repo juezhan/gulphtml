@@ -9,12 +9,14 @@ import merge from 'merge-stream'
 import rev from 'gulp-rev'
 import revCollector from 'gulp-rev-collector'
 import fileInclude from 'gulp-file-include'
+import replace from 'gulp-replace'
 
 let buildBasePath = 'build/'    //构建输出的目录
 let distPath = './application'
 let cssPath = distPath + '/css'      //构建输出的目录
 let htmlPath = distPath + '/html'      //构建输出的目录
 let jsPath = distPath + '/js'      //构建输出的目录
+let imgsPath = distPath + '/imgs'      //构建输出的目录
 
 gulp.task('sprite', function () {
   // Generate our spritesheet
@@ -80,7 +82,7 @@ gulp.task('createCss', () => {
 gulp.task('imgMin', () => {
   return gulp.src('./src/imgs/*.*')
     .pipe(imagemin())
-    .pipe(gulp.dest(buildBasePath + '/imgs'))
+    .pipe(gulp.dest(imgsPath))
 });
 
 gulp.task('rev', ['createCss'], function () {
@@ -90,6 +92,7 @@ gulp.task('rev', ['createCss'], function () {
       basepath: '@file'
     }))           //- 引入包含文件
     .pipe(revCollector())                           //- 执行文件内css名的替换
+    .pipe(replace('.jpg', '.jpg?v=000'))
     .pipe(gulp.dest(htmlPath));                     //- 替换后的文件输出的目录
 });
 
@@ -106,6 +109,12 @@ gulp.task('fileinclude', function () {
 gulp.task('copylib', function () {
   return gulp.src('lib/**/*')
     .pipe(gulp.dest(distPath))
+});
+
+gulp.task('templates', function () {
+  gulp.src(['file.txt'])
+    .pipe(replace(/jpg(.{1})/g, '$1?v=123'))
+    .pipe(gulp.dest('build/'));
 });
 
 gulp.task('default', ['copylib', 'rev', 'imgMin']);
