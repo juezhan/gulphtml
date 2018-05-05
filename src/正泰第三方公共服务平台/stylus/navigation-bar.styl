@@ -1,0 +1,46 @@
+@import "./variable/color.styl"
+.navigation-bar
+  .container
+    font-size 0
+    .bd
+      margin 0 auto
+      background-color #f5f5f5
+      border 1px solid $bgColor_1
+      height 38px
+      line-height 38px
+      text-align center
+    .item
+      position relative
+      display inline-block
+      width 20%
+      text-align center
+      font-size 18px
+
+      a.tt
+        color $textColor_1
+        display inline-block
+        padding 0 20px
+        margin-bottom -1px
+        border-bottom 2px solid transparent
+        &.on
+          color #293896
+          border-color #f8a835
+      .menu
+        display none
+        position absolute
+        top 0
+        left 0
+        width 100%
+        &.visible
+          display block
+        .arrow
+          margin 0 auto
+          background url("../imgs/arrow.png") 0 0 no-repeat
+          background-size 100% 100%
+        ul
+          display inline-block
+          background-color rgba(0, 0, 0, .70)
+          a
+            word-break keep-all
+            &:hover
+              color #999999

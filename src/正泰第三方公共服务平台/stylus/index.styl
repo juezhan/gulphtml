@@ -1,0 +1,122 @@
+@import "./include/reset.styl"
+@import "./variable/color.styl"
+@import "./variable/var.styl"
+
+.index
+  .banner
+    margin-top 20px
+  .news
+    margin-top 20px
+    font-size 0
+    a
+      &:hover
+        text-decoration underline
+      em
+        float left
+        display inline-block
+        margin 14px 5px 0 0
+        width 2px
+        height 2px
+        background-color $textColor_1
+    .container
+      overflow hidden
+      .aside,
+      .main
+        height 348px
+        border 1px solid $bgColor_4
+      .aside
+        position relative
+        float left
+        width 398px
+        .icon-arrow-down
+          position absolute
+          top 0
+          left 45px
+        .tt
+          font-size 18px
+          color $textColor_4
+          line-height 20px
+          margin-top 15px
+          .icon
+            margin 0 11px 0 24px
+            float left
+        .bd
+          font-size 12px
+          line-height 30px
+          padding 9px 24px
+          a
+            textEllipsis()
+      .main
+        float right
+        width 786px
+        .tag-tt
+          height 35px
+          margin 21px 24px 0
+          border-bottom 1px solid $bgColor_4
+          .item
+            display inline-block
+            font-size 18px
+            color $textColor_1
+            width 126px
+            height 20px
+            line-height 20px
+            padding-bottom 15px
+            border-bottom 1px solid transparent
+            cursor pointer
+            .icon
+              float left
+              margin 0 7px
+              &.on
+                display none
+            &.on
+              border-bottom-color $textColor_4
+              .icon
+                display none
+                &.on
+                  display inline-block
+        .tag-bd
+          font-size 12px
+          margin 8px 24px
+          position relative
+          height 275px
+          .item
+            display none
+            &.on
+              display block
+            li
+              line-height 30px
+              span
+                display inline-block
+                float right
+
+            .more
+              position absolute
+              right 0
+              bottom 6px
+              display block
+              width 126px
+              line-height 28px
+              height 28px
+              background-color #eeeeee
+              color $textColor_1
+              border 1px solid #dcdcdc
+              text-align center
+              border-radius 3px
+  .cell
+    margin 20px 0 34px
+    .main
+      background-color #eeeeee
+      border 1px solid $bgColor_3
+      text-align center
+      font-size 0
+      padding 24px 0
+    .item
+      font-size 0
+      display inline-block
+      position relative
+      width 350px
+      height 250px
+      background-color #ffffff
+      border-top 1px solid $textColor_4
+      margin 0 15px
+

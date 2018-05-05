@@ -10,9 +10,12 @@ import rev from 'gulp-rev'
 import revCollector from 'gulp-rev-collector'
 import fileInclude from 'gulp-file-include'
 import replace from 'gulp-replace'
+import concat from 'gulp-concat'
+import autoprefixer from 'gulp-autoprefixer'
 
+let projectName = '九维智库'
 let buildBasePath = 'build/'    //构建输出的目录
-let distPath = './application'
+let distPath = './dist/' + projectName
 let cssPath = distPath + '/css'      //构建输出的目录
 let htmlPath = distPath + '/html'      //构建输出的目录
 let jsPath = distPath + '/js'      //构建输出的目录
@@ -20,10 +23,10 @@ let imgsPath = distPath + '/imgs'      //构建输出的目录
 
 gulp.task('sprite', function () {
   // Generate our spritesheet
-  let spriteData = gulp.src('src/imgs/icon/*.png')
+  let spriteData = gulp.src('./src/' + projectName + '/imgs/icon/*.png')
     .pipe(spritesmith({
-      imgName: 'sprite.png',
-      cssName: 'sprite.css'
+      imgName: 'icon.png',
+      cssName: 'icon.css'
     }))
 
   // Pipe image stream through image optimizer and onto disk
@@ -31,7 +34,7 @@ gulp.task('sprite', function () {
   // DEV: We must buffer our stream into a Buffer for `imagemin`
     .pipe(buffer())
     .pipe(imagemin())
-    .pipe(gulp.dest('path/to/image/folder/'))
+    .pipe(gulp.dest(cssPath))
 
   // Pipe CSS stream through CSS optimizer and onto disk
   let cssStream = spriteData.css
@@ -42,7 +45,7 @@ gulp.task('sprite', function () {
         }
       }
     }))
-    .pipe(gulp.dest('path/to/css/folder/'));
+    .pipe(gulp.dest(cssPath));
 
   // Return a merged stream to handle both `end` events
   return merge(imgStream, cssStream);
@@ -50,7 +53,7 @@ gulp.task('sprite', function () {
 
 //雪碧图
 // gulp.task('sprite', function () {
-//   gulp.src('src/imgs/icon/*.png')
+//   gulp.src('src/'+projectName+'/imgs/icon/*.png')
 //     .pipe(spritesmith({
 //       imgName: 'sprite.png',
 //       cssName: 'build/css/index.css',
@@ -62,8 +65,14 @@ gulp.task('sprite', function () {
 
 // 生成 CSS
 gulp.task('createCss', () => {
-  return gulp.src('./src/stylus/*.styl')
+  return gulp.src('./src/' + projectName + '/stylus/*.styl')
     .pipe(stylus())          // stylus 转 CSS
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions', 'Android >= 4.0'],
+      cascade: true, //是否美化属性值 默认：true 像这样：
+      remove: true //是否去掉不必要的前缀 默认：true
+    }))
+    // .pipe(concat('main.css'))
     .pipe(cssver())          // url 增加版本号
     .pipe(cleanCSS({
       format: {
@@ -80,25 +89,26 @@ gulp.task('createCss', () => {
 
 // 压缩图片
 gulp.task('imgMin', () => {
-  return gulp.src('./src/imgs/*.*')
+  return gulp.src('./src/' + projectName + '/imgs/*.*')
     .pipe(imagemin())
     .pipe(gulp.dest(imgsPath))
 });
 
+// 生成 html
 gulp.task('rev', ['createCss'], function () {
-  gulp.src(['./rev/*.json', './src/html/*.html'])   //- 读取 rev-manifest.json 文件以及需要进行css名替换的文件
+  gulp.src(['./rev/*.json', './src/' + projectName + '/html/*.html'])   //- 读取 rev-manifest.json 文件以及需要进行css名替换的文件
     .pipe(fileInclude({
       prefix: '@@',
       basepath: '@file'
     }))           //- 引入包含文件
     .pipe(revCollector())                           //- 执行文件内css名的替换
-    .pipe(replace('.jpg', '.jpg?v=000'))
+    .pipe(replace('.png', '.png?v=000'))
     .pipe(gulp.dest(htmlPath));                     //- 替换后的文件输出的目录
 });
 
 // Include HTML
 gulp.task('fileinclude', function () {
-  gulp.src(['./src/html/*.html'])
+  gulp.src(['./src/' + projectName + '/html/*.html'])
     .pipe(fileInclude({
       prefix: '@@',
       basepath: '@file'
@@ -106,8 +116,9 @@ gulp.task('fileinclude', function () {
     .pipe(gulp.dest('./dist'));
 });
 
+// 拷贝 lib 文件夹
 gulp.task('copylib', function () {
-  return gulp.src('lib/**/*')
+  return gulp.src(['lib/**/*'])
     .pipe(gulp.dest(distPath))
 });
 

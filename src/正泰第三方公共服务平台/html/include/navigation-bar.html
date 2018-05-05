@@ -1,0 +1,60 @@
+<!-- navigation-bar 开始 -->
+<link href="../css/navigation-bar.css" rel="stylesheet"/>
+<div class="navigation-bar" id="navigationBar">
+    <div class="container">
+        <div class="bd">
+            <div class="item"><a href="#" class="tt">首页</a></div>
+            <div class="item">
+                <a href="#" class="tt">信息公示</a>
+                <div class="menu">
+                    <div class="arrow"></div>
+                    <ul>
+                        <li><a href="#">通知公告</a></li>
+                        <li><a href="#">政策信息</a></li>
+                        <li><a href="#">平台新闻</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="item">
+                <a href="#" class="tt">评估评价</a>
+                <div class="menu">
+                    <div class="arrow"></div>
+                    <ul>
+                        <li><a href="#">联评联审</a></li>
+                        <li><a href="#">科技成果评价</a></li>
+                        <li><a href="#">预算内资金绩效评价</a></li>
+                        <li><a href="#">社会稳定风险评估</a></li>
+                        <li><a href="#">扶贫成效评估</a></li>
+                        <li><a href="#">省级示范镇评估</a></li>
+                        <li><a href="#">其他评估</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="item"><a href="#" class="tt">成果展示</a></div>
+            <div class="item">
+                <a href="#" class="tt">平台简介</a>
+                <div class="menu">
+                    <div class="arrow"></div>
+                    <ul>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">联系方式</a></li>
+                        <li><a href="#">在线交流</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  $('#navigationBar a.tt').each(function (e) {
+    $(this).hover(function () {
+      $(this).next('.menu').addClass('visible')
+    }, null)
+  })
+  $('#navigationBar .menu').each(function (e) {
+    $(this).hover(null,function () {
+      $(this).removeClass('visible')
+    } )
+  })
+</script>
+<!-- navigation-bar 结束 -->

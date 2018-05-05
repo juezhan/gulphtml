@@ -1,0 +1,158 @@
+@import "../../assets/stylus/reset.styl"
+
+.header
+  position fixed
+  top 0
+  left 0
+  width 100%
+  height 98px
+  background-color rgba(0, 0, 0, 0.6)
+  z-index 999
+  .logo
+    float left
+    margin-top 24px
+  .nav
+    float right
+    margin-top 42px
+    a
+      display inline-block
+      margin-left 11px
+      font-size 18px
+      line-height 18px
+      height 18px
+      color #ffffff
+      padding 0 14px 13px
+      border-bottom 4px solid transparent
+      &.on
+        color #faa61a
+        border-bottom-color #faa61a
+
+.banner
+  min-height 400px
+  background 50% bottom no-repeat
+  background-size cover
+  overflow hidden
+  position relative
+  .tit
+    font-size 30px
+    line-height 30px
+    height 30px
+    text-align center
+    color #000000
+  .link
+    display block
+    width 258px
+    height 48px
+    line-height 48px
+    margin 0 auto
+    border 1px solid #ffa61a
+    font-size 24px
+    color #ffa61a
+    text-align center
+  .w
+    position absolute
+    left 0
+    top 50%
+    width 100%
+    transform translate3d(0, -50%, 0)
+  &.banner-1
+    background-image url("../imgs/bg-1.png")
+    img
+      display block
+      margin 0 auto
+  &.banner-2
+    background-image url("../imgs/bg-2.png")
+    .tit
+      margin-bottom 37px
+    .items
+      font-size 0
+      .item
+        display inline-block
+        position relative
+        width 168px
+        border 1px solid #a0a0a0
+        height 206px
+        margin 0 15px
+        .tt
+          height 24px
+          line-height 24px
+          font-size 12px
+          color #000000
+          background-color #cbd2fe
+          text-align center
+          border-bottom 1px solid #a0a0a0
+        .icon
+          position absolute
+          right 6px
+          bottom 3px
+  &.banner-3
+    background-image url("../imgs/bg-3.png")
+    .tit
+      margin-bottom 37px
+    .items
+      font-size 0
+      margin 0 -8px
+      img
+        display inline-block
+        margin 12px 8px
+  &.banner-4
+    background-image url("../imgs/bg-4.png")
+    .tit
+      margin-bottom 37px
+    .items
+      font-size 0
+      margin 0 -40px
+      .item
+        width 346px
+        margin 0 40px
+        display inline-block
+        .item-bd
+          border 3px solid #a0a0a0
+          height 233px
+        p
+          font-size 18px
+          line-height 18px
+          margin-top 27px
+  &.banner-5
+    background-image url("../imgs/bg-5.png")
+    .tit
+      margin-bottom 90px
+  &.banner-6
+    background-image url("../imgs/bg-6.png")
+    .tit
+      margin-bottom 37px
+      color #ffffff
+  &.banner-7
+    background-image url("../imgs/bg-7.png")
+    .tit
+      margin-bottom 87px
+      color #ffffff
+    .cnt
+      font-size 18px
+      line-height 35px
+      margin 0 50px
+      padding 100px 82px
+      color #000000
+      background-color rgba(255, 255, 255, 0.3)
+
+  &.banner-5,
+  &.banner-6
+    .items
+      font-size 0
+      margin 0 -40px
+      .item
+        display inline-block
+        margin 0 40px
+        width 344px
+        border 1px solid #a0a0a0
+        .item-tt
+          padding 10px
+          .img
+            width 78px
+            height 78px
+            border 1px solid #a0a0a0
+          .txt
+            font-size 26px
+        .item-bd
+          font-size 20px
+          line-height 35px
